@@ -16,5 +16,6 @@
 | [Day 12: Passage Pathing](https://adventofcode.com/2021/day/12)         | [12](12/12.py) |
 | [Day 13: Transparent Origami](https://adventofcode.com/2021/day/13)     | [13](13/13.py) |
 | [Day 14: Extended Polymerization](https://adventofcode.com/2021/day/14) | [14](14/14.py) |
-| [Day 15: Chiton](https://adventofcode.com/2021/day/15) | [15](15/15.py) |
+| [Day 15: Chiton](https://adventofcode.com/2021/day/15)                  | [15](15/15.py) |
+| [Day 16: Packet Decoder](https://adventofcode.com/2021/day/16)          | [16](16/16.py) |
 
