@@ -97,10 +97,7 @@ def move(rooms, hallway, moved, indent='', cutoff=2 ** 100):
                 if me + e < mincost:
                     mincost = e + me
                     minmove = [(t,) + tuple(m) + (e,)] + mm
-                    # print(mincost, minmove)
-                    if indent == '':
-                        # print(indent, rooms, hallway, moved)
-                        print(mincost, minmove)
+
 
             CACHE[_id] = mincost, minmove
     return CACHE[_id]
@@ -176,9 +173,6 @@ rooms = [
 #     [4, 14, 12, 7],
 # ]
 
-for j in range(len(rooms[0]) - 1, -1, -1):
-    print(' '.join('ABCD'[_[j] % 4] for _ in rooms))
-
 moved = [0] * 16
 hallway = [None] * 7
 
@@ -188,4 +182,3 @@ print(e)
 for m, a, s, t, e in path:
     print(
         f'Ampo {"ABCD"[a % 4]} from {"Hallway" if m == "h" else "Room"}{s} to {"Hallway" if m == "r" else "Room"}{t} = {e}')
-print("branches:", BRANCHES)
