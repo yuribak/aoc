@@ -1,7 +1,6 @@
-
 from collections import defaultdict
 
-f="input/5"
+f = "2022/input/" + __file__.split('/')[-1].split('.')[0]
 with open(f) as fin:
     data = fin.read()
 

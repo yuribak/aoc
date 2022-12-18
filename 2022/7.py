@@ -1,4 +1,4 @@
-f="input/7"
+f = "2022/input/" + __file__.split('/')[-1].split('.')[0]
 with open(f) as fin:
     data = [_.strip() for _ in fin]
 

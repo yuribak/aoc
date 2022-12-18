@@ -1,6 +1,6 @@
 from operator import mul, or_
 
-f = "input/8"
+f = "2022/input/" + __file__.split('/')[-1].split('.')[0]
 with open(f) as fin:
     data = [list(map(int, _.strip())) for _ in fin]
 
