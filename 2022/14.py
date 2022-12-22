@@ -1,4 +1,4 @@
-f = "2022/input/14"
+f = "2022/input/" + __file__.split('/')[-1].split('.')[0]
 
 def sign(n): return 1 if n >=0 else -1
 
