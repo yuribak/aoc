@@ -10,11 +10,10 @@ for i, row in enumerate(map):
     for j, v in enumerate(row):
         if v == "#":
             elves.add((i, j))
-# print(elves)
 
 
-pos = [(i, j) for i in range(-1, 2) for j in range(-1, 2) if i or j]
-pos_names = dict(zip(["NW", "N", "NE", "W", "E", "SW", "S", "SE"], pos))
+compass = [(i, j) for i in range(-1, 2) for j in range(-1, 2) if i or j]
+dir_names = dict(zip(["NW", "N", "NE", "W", "E", "SW", "S", "SE"], compass))
 
 
 def add(a, b):
@@ -22,8 +21,8 @@ def add(a, b):
 
 
 def lonely(e, elves):
-    for p in pos:
-        if add(e, p) in elves:
+    for _ in compass:
+        if add(e, _) in elves:
             return False
     return True
 
@@ -31,9 +30,9 @@ def lonely(e, elves):
 def option_maker(directions, target):
     def f(e, elves):
         for d in directions:
-            if add(e, pos_names[d]) in elves:
+            if add(e, dir_names[d]) in elves:
                 return None
-        return add(e, pos_names[target])
+        return add(e, dir_names[target])
 
     return f
 
@@ -53,9 +52,8 @@ def round(elves, options):
     for e in elves:
         if lonely(e, elves):
             continue
-        for opt in options:
-            target = opt(e, elves)
-            if target:
+        for opt in options:           
+            if target := opt(e, elves):
                 props[target].append(e)
                 break
     moves = 0
