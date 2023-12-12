@@ -53,7 +53,7 @@ def j_hand_type(hand):
     return hand_type(hand)
 
 
-def solve_a(data):
+def solve_a(data, hand_type=hand_type, SUITS=SUITS):
     def cmp(a, b):
         ha, hb = hand_type(a[0]), hand_type(b[0])
         if ha != hb:
@@ -74,40 +74,14 @@ def solve_a(data):
 
 
 def solve_b(data):
-    def cmp(a, b):
-        ha, hb = j_hand_type(a[0]), j_hand_type(b[0])
-        if ha != hb:
-            return ha - hb
+    return solve_a(data, hand_type=j_hand_type, SUITS=JSUITS)
 
-        for ca, cb in zip(a[0], b[0]):
-            if JSUITS[ca] != JSUITS[cb]:
-                return JSUITS[ca] - JSUITS[cb]
-
-    data = [line.split() for line in data.split("\n")]
-    data = [(hand, int(bid)) for hand, bid in data]
-
-    answer = 0
-    ranked = sorted(data, key=cmp_to_key(cmp))
-    for i, (hand, bid) in enumerate(ranked):
-        answer += bid * (i + 1)
-
-    return str(answer)
-
-
-# answer_a_example = solve_a(puzzle.examples[0].input_data)
-# print(answer_a_example, puzzle.examples[0].answer_a, answer_a_example == puzzle.examples[0].answer_a)
 
 answer_a = solve_a(puzzle.input_data)
 print(answer_a)
 puzzle.answer_a = answer_a
 
 
-# answer_b_example = solve_b(puzzle.examples[0].input_data)
-# print(answer_b_example, puzzle.examples[0].answer_b, answer_b_example == puzzle.examples[0].answer_b)
-
 answer_b = solve_b(puzzle.input_data)
 print(answer_b)
 
-
-# puzzle.answer_a = answer_a
-puzzle.answer_b = answer_b
