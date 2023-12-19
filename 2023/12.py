@@ -36,8 +36,10 @@ def take(string, substring):
 CACHE={}
 def solve(springs, damaged):
     if not damaged:
+        # satisfied all damaged - check if string is done
         return '#' not in springs
     if not springs:
+        # unsatisfied damaged
         return 0
     
     if (springs, damaged) in CACHE:
