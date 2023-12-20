@@ -29,18 +29,18 @@ def parse(data):
     wfs = [_.split("{") for _ in wfs.split("\n")]
     wfs = [(wf, rules[:-1].split(",")) for wf, rules in wfs]
     for _, rules in wfs:
-        for j in range(len(rules) - 1):
-            cond, tgt = rules[j].split(":")
+        for i in range(len(rules) - 1):
+            cond, tgt = rules[i].split(":")
             attr, op, value = re.match("(\w+)([<>])(\d+)", cond).groups()
             op = gt if op == ">" else lt
-            rules[j] = (attr, op, int(value), tgt)
+            rules[i] = (attr, op, int(value), tgt)
         rules[-1] = ("x", lambda x, y: True, 1, rules[-1])
     wfs = {wf: rules for wf, rules in wfs}
 
     return wfs, parts
 
 
-def check(rules, part):
+def check_a(rules, part):
     for attr, op, value, tgt in rules:
         if op(part[ATTRS.index(attr)], value):
             return tgt
@@ -54,11 +54,11 @@ def solve_a(data):
         wf = "in"
         while True:
             rules = wfs[wf]
-            match check(rules, part):
+            match check_a(rules, part):
                 case "A": break
                 case "R": break
                 case wf: continue
-        if check(rules, part) == "A":
+        if check_a(rules, part) == "A":
             s += sum(part)
     return s
 
